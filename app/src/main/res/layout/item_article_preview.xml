@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivArticlePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvNewsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvNewsTitle"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="19dp"
+        android:text="Corona is Cured!!! World Is Saved!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivArticlePic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="43dp"
+        android:text="Corona is no more. World is back to normal. Peace has returned. People are overwhelmed with joy again."
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivArticlePic"
+        app:layout_constraintTop_toTopOf="@+id/tvNewsTitle" />
+
+    <TextView
+        android:id="@+id/tvNewsSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="23dp"
+        android:text="Google"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivArticlePic" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="Now"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNewsSource"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNewsSource" />
+</androidx.constraintlayout.widget.ConstraintLayout>

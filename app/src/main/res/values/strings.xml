@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SyncUpNews</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_search_news">Search News</string>
+    <string name="cd_save_article">Floating Action Button to save an article</string>
+    <string name="menu_breaking_news">Breaking News</string>
+    <string name="menu_saved_news">Saved News</string>
+    <string name="menu_search_news">Search News</string>
 </resources>
