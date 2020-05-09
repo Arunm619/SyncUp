@@ -1,4 +1,4 @@
-package io.arunbuilds.syncupnews.api
+package io.arunbuilds.syncupnews.api.remote
 
 import io.arunbuilds.syncupnews.BuildConfig
 import io.arunbuilds.syncupnews.api.model.NewsResponse
