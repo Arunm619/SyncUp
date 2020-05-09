@@ -2,6 +2,7 @@ package io.arunbuilds.syncupnews
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.LiveData
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
