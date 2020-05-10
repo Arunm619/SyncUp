@@ -19,14 +19,17 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="io.arunbuilds.syncupnews.ui.fragments.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <argument
+            android:name="article"
+            app:argType="io.arunbuilds.syncupnews.api.model.Article" />
+    </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="io.arunbuilds.syncupnews.ui.fragments.SavedNewsFragment"
         android:label="fragment_saved_news"
         tools:layout="@layout/fragment_saved_news">
         <action
-
             android:id="@+id/action_savedNewsFragment_to_articleFragment"
             app:destination="@id/articleFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -40,7 +43,6 @@
         android:label="fragment_search_news"
         tools:layout="@layout/fragment_search_news">
         <action
-
             android:id="@+id/action_searchNewsFragment_to_articleFragment"
             app:destination="@id/articleFragment"
             app:enterAnim="@anim/slide_in_right"

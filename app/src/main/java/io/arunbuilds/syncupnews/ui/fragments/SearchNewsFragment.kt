@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import io.arunbuilds.syncupnews.R
@@ -12,6 +13,7 @@ import io.arunbuilds.syncupnews.adapters.NewsAdapter
 import io.arunbuilds.syncupnews.api.model.NewsResponse
 import io.arunbuilds.syncupnews.ui.HomeActivity
 import io.arunbuilds.syncupnews.ui.HomeViewModel
+import io.arunbuilds.syncupnews.util.Constants
 import io.arunbuilds.syncupnews.util.Constants.SEARCH_NEWS_TIME_DELAY
 import io.arunbuilds.syncupnews.util.Resource
 import kotlinx.android.synthetic.main.fragment_search_news.*
@@ -23,8 +25,8 @@ import timber.log.Timber
 
 
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
-    lateinit var viewModel: HomeViewModel
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var viewModel: HomeViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,6 +44,16 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                     }
                 }
             }
+        }
+
+        newsAdapter.setOnclickListener {
+            val bundle = Bundle().apply {
+                putSerializable(Constants.KEY_ARTICLE, it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articleFragment,
+                bundle
+            )
         }
 
         viewModel.searchNews.observe(viewLifecycleOwner, Observer {
