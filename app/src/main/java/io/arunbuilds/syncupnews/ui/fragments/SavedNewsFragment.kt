@@ -30,7 +30,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 putSerializable(Constants.KEY_ARTICLE, it)
             }
             findNavController().navigate(
-                R.id.action_searchNewsFragment_to_articleFragment,
+                R.id.action_savedNewsFragment_to_articleFragment,
                 bundle
             )
         }
@@ -64,24 +64,17 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val article = newsAdapter.getArticleAt(position)
-                var deleted = true
+                viewModel.deleteNews(article)
                 Snackbar.make(view!!, "Successfully Delete article", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
-                        deleted = false
+                        viewModel.saveNews(article)
                     }
                     show()
-                    addCallback(object : Snackbar.Callback() {
-                        override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                            super.onDismissed(transientBottomBar, event)
-                            if (deleted) {
-                                viewModel.deleteNews(article)
-                            }
-                        }
-                    })
                 }
             }
 
         }
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvSavedNews)
     }
 
     companion object {
