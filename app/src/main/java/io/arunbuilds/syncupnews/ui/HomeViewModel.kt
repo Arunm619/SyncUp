@@ -21,7 +21,7 @@ class HomeViewModel(
     }
 
 
-    fun getBreakingNews(countryCode: String) {
+    private fun getBreakingNews(countryCode: String) {
         viewModelScope.launch {
             breakingNews.postValue(Resource.Loading())
             try {

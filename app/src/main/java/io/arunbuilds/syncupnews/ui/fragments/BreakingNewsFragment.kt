@@ -64,11 +64,11 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun hideProgressBar() {
-        paginationProgressBar.hide()
+        paginationProgressBar.visibility = View.GONE
     }
 
     private fun showProgressBar() {
-        paginationProgressBar.show()
+        paginationProgressBar.visibility = View.VISIBLE
     }
 
     companion object {
