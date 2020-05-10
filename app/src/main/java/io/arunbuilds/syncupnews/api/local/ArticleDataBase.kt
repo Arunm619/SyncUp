@@ -9,7 +9,7 @@ import io.arunbuilds.syncupnews.api.model.Article
 
 @Database(
     entities = [Article::class],
-    version = 1
+    version = 3
 )
 
 @TypeConverters(
@@ -33,6 +33,7 @@ abstract class ArticleDataBase : RoomDatabase() {
             context.applicationContext,
             ArticleDataBase::class.java,
             "article_db.db"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 }

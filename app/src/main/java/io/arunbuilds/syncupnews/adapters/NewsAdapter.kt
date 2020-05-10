@@ -62,4 +62,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         differ.submitList(listofArticles)
     }
 
+    fun getArticleAt(position: Int): Article = differ.currentList[position]
+
 }

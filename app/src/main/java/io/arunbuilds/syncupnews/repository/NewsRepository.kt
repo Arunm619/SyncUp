@@ -2,6 +2,7 @@ package io.arunbuilds.syncupnews.repository
 
 import android.content.Context
 import io.arunbuilds.syncupnews.api.local.ArticleDataBase
+import io.arunbuilds.syncupnews.api.model.Article
 import io.arunbuilds.syncupnews.api.remote.NewsApi
 import io.arunbuilds.syncupnews.api.remote.RetrofitInstance
 
@@ -15,4 +16,12 @@ class NewsRepository(
 
     suspend fun searchNews(queryString: String, page: Int) =
         newsApi.searchForNews(queryString, page)
+
+    suspend fun upsert(article: Article) =
+        newsDb.getArticleDao().insertorUpdateArticle(article)
+
+    fun getSavedNews() = newsDb.getArticleDao().getAllArticles()
+
+    suspend fun deleteArticle(article: Article) =
+        newsDb.getArticleDao().deleteArticle(article)
 }

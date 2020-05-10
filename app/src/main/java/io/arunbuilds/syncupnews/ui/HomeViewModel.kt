@@ -3,11 +3,13 @@ package io.arunbuilds.syncupnews.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.arunbuilds.syncupnews.api.model.Article
 import io.arunbuilds.syncupnews.api.model.NewsResponse
 import io.arunbuilds.syncupnews.repository.NewsRepository
 import io.arunbuilds.syncupnews.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import timber.log.Timber
 
 class HomeViewModel(
     val newsRepository: NewsRepository
@@ -19,7 +21,9 @@ class HomeViewModel(
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPageNumber = 1
 
-     fun getBreakingNews(countryCode: String) {
+    val errorsLiveData: MutableLiveData<String> = MutableLiveData()
+
+    fun getBreakingNews(countryCode: String) {
         viewModelScope.launch {
             breakingNews.postValue(Resource.Loading())
             try {
@@ -32,7 +36,7 @@ class HomeViewModel(
         }
     }
 
-     fun searchNews(query: String) {
+    fun searchNews(query: String) {
         viewModelScope.launch {
             searchNews.postValue(Resource.Loading())
             try {
@@ -43,6 +47,21 @@ class HomeViewModel(
                 searchNews.postValue(Resource.Error(errorMessage))
             }
         }
+    }
+
+    fun saveNews(article: Article) = viewModelScope.launch {
+        try {
+            newsRepository.upsert(article)
+        } catch (exception: Exception) {
+            Timber.e(exception)
+            errorsLiveData.postValue(exception.message)
+        }
+    }
+
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteNews(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
     }
 
     private fun handleResponse(response: Response<NewsResponse>): Resource<NewsResponse> {

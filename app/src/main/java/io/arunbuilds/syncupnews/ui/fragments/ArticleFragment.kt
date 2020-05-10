@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import io.arunbuilds.syncupnews.R
 import io.arunbuilds.syncupnews.ui.HomeActivity
 import io.arunbuilds.syncupnews.ui.HomeViewModel
@@ -20,6 +22,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        viewModel.errorsLiveData.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(view, "Error Occured :  $it", Snackbar.LENGTH_SHORT).show()
+        })
+
+        fab.setOnClickListener {
+            viewModel.saveNews(article)
+            Snackbar.make(view, "Saved Successfully!", Snackbar.LENGTH_SHORT).show()
         }
     }
 
