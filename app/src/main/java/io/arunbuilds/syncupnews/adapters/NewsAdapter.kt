@@ -58,4 +58,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         onItemClickListener = listener
     }
 
+    fun submitList(listofArticles: List<Article>) {
+        differ.submitList(listofArticles)
+    }
+
 }
